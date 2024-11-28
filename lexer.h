@@ -6,17 +6,16 @@
 #include <ctype.h>
 
 typedef enum {
-    COMMAND,
-    PIPE,
-    ARGUMENTS_CMD,
+  COMMAND,
+  PIPE,
+  ARGUMENTS_CMD,
 } TokenKind;
 
 typedef struct {
-    char *cmd;
-    TokenKind kind;
+  char *cmd;
+  TokenKind kind;
 } Token;
 
-void lexer(char *input);
+void lexer(char *input, int length);
 
 #endif // LEXER_H
-

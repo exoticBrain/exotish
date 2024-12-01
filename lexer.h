@@ -5,17 +5,14 @@
 #include "shell.h"
 #include <ctype.h>
 
-typedef enum {
-  COMMAND,
-  PIPE,
-  ARGUMENTS_CMD,
-} TokenKind;
+typedef enum { COMMAND, PIPE, OPTIONS, ARGUMENTS, END_CMD, } TokenKind;
 
 typedef struct {
   char *cmd;
   TokenKind kind;
 } Token;
 
-void lexer(char *input, int length);
+void lexer(char *input, Token **tokens);
+void display(Token *tokens);
 
 #endif // LEXER_H

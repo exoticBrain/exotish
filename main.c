@@ -1,6 +1,8 @@
 #include "lexer.h"
 #include "parser.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int main() {
   Token *tokens;
@@ -15,11 +17,18 @@ int main() {
     write(STDOUT_FILENO, "exotish~$ ", 9);
     linelen = getline(&line, &linecap, stdin) - 1;
     line[linelen] = '\0';
-
-    lexer(line, &tokens);
-    tokens->kind = END_CMD;
-    //    display(tokens_ptr);
-    parse(tokens_ptr);
+    if (strcmp(line, "") != 0) {
+      if (strcmp(line, "clear") == 0) {
+        system("clear");
+      } else if (strcmp(line, "exit") == 0) {
+        printf("EXITING EXOTISH -----\n");
+        exit(EXIT_FAILURE);
+      } else {
+        lexer(line, &tokens);
+        // display(tokens_ptr);
+        parse(tokens_ptr);
+      }
+    }
   }
   return 0;
 }

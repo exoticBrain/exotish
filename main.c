@@ -25,6 +25,14 @@ int main() {
         exit(EXIT_FAILURE);
       } else {
         lexer(line, &tokens);
+        if (strcmp(tokens_ptr->cmd, "cd") == 0) {
+          if ((tokens_ptr + 1)->kind == ARGUMENTS) {
+            chdir((tokens_ptr + 1)->cmd);
+          } else if ((tokens_ptr + 1)->kind == END_CMD) {
+            chdir("/Users/exotic");
+          }
+          continue;
+        }
         // display(tokens_ptr);
         parse(tokens_ptr);
       }
